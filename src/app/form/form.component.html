@@ -1,0 +1,80 @@
+<div class="p-3">
+  <div class="form-group col-7 offset-2" [formGroup]="formPersonas">
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre" [value]="editing ? persona.nombre : '' "
+      class="form-control" placeholder="Nombre del Usuario" formControlName="nombre"
+      [class.is-invalid]="f.nombre.touched && f.nombre.invalid">
+      <div *ngIf="f.nombre.touched && f.nombre.invalid" class="text-right text-danger small">
+        El campo nombre es requerido!
+      </div>
+    <label for="apellido">Apellido</label>
+    <input  type="text" name="apellido" id="apellido"  [value]="editing ? persona.apellido : '' "
+      class="form-control" placeholder="Apellido del Usuario" formControlName="apellido"
+      [class.is-invalid]="f.apellido.touched && f.apellido.invalid">
+      <div *ngIf="f.apellido.touched && f.apellido.invalid" class="text-right text-danger small">
+        El campo apellido es requerido!
+      </div>
+    <label for="email">Email</label>
+    <input  type="email" name="email" id="email"  [value]="editing ? persona.email : '' "
+      class="form-control" placeholder="Email valido" formControlName="email"
+      [class.is-invalid]="f.email.touched && f.email.invalid">
+      <div *ngIf="f.email.touched && f.email.invalid" class="text-right text-danger small">
+        <div *ngIf="f.email.errors.required">
+          El campo email es requerido!
+        </div>
+        <div *ngIf="f.email.errors.email">
+          Ingrese un email valido!
+        </div>
+      </div>
+    <label for="password">Contraseña</label>
+    <input  type="password" name="password" id="password"  [value]="editing ? persona.password : '' "
+      class="form-control" placeholder="Ingrese contraseña" formControlName="password"
+      [class.is-invalid]="f.password.touched && f.password.invalid">
+      <div *ngIf="f.password.touched && f.password.invalid" class="text-right text-danger small">
+        <div *ngIf="f.password.errors.required">
+          El campo contraseña es requerido!
+        </div>
+        <div *ngIf="f.password.errors.minlength">
+          La contraseña debe tener al menos 8 caracteres!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="selectPais">Pais</label>
+        <select class="form-control" id="selectPais" name="pais_id" (change)="cargarProvincias($event.target.value)">
+          <option selected disabled value="0">
+            Seleccione una opcion
+          </option>
+          <option *ngFor="let pais of paises" value="{{pais.id}}">
+            {{pais.pais}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="selectProvincia">Provincia</label>
+        <select class="form-control" id="selectProvincia" name="provincia_id" (change)="cargarLocalidades($event.target.value)">
+          <option selected disabled value="0">
+            Seleccione una opcion
+          </option>
+          <option *ngFor="let prov of provincias" value="{{prov.id}}">
+            {{prov.provincia}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="selectLocalidad">Localidad</label>
+        <select class="form-control" id="selectLocalidad" name="localidad_id" >
+          <option selected disabled value="0">
+            Seleccione una opcion
+          </option>
+          <option *ngFor="let localidad of localidades" value="{{localidad.id}}">
+            {{localidad.localidad}}
+          </option>
+        </select>
+      </div>
+    <div class="float-right mt-2">
+      <button (click)="backPage()" [routerLink]="['/home']"   class="btn btn-danger btn-sm">Cancelar</button>
+      <button (click)="guardarPersona()" [routerLink]="['/home']"   class="btn btn-success btn-sm ml-1">Guardar</button>
+    </div>
+  </div>
+
+</div>

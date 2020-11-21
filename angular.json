@@ -28,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.sass",
+              "node_modules/fontawesome/css/all.min.css",
+              "node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
